@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title> Prevention</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<style>
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+color:white;
+}
+
+/* HEADER */
+.header{
+text-align:center;
+padding:40px 20px 10px;
+}
+
+.header h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.header p{
+opacity:0.7;
+font-size:15px;
+max-width:600px;
+margin:auto;
+}
+
+/* GRID */
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+padding:30px;
+max-width:1200px;
+margin:auto;
+}
+
+/* CARD */
+.card{
+background:white;
+color:black;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:all 0.3s ease;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* TOP BAR */
+.card-header{
+background:linear-gradient(135deg,#22d3ee,#3b82f6);
+color:white;
+padding:18px;
+font-weight:bold;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* CONTENT */
+.card-body{
+padding:18px;
+font-size:14px;
+line-height:1.6;
+}
+
+.card-body li{
+margin-bottom:8px;
+}
+
+/* ICON */
+.icon{
+font-size:18px;
+}
+</style>
+</head>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB5X95YgL3uFwNb6S7vRbhUMrqpjPj9Udw",
+  authDomain: "cyber-web-app.firebaseapp.com",
+  projectId: "cyber-web-app",
+  storageBucket: "cyber-web-app.appspot.com",
+  messagingSenderId: "432294151782",
+  appId: "1:432294151782:web:edcf1a74701eea04ae4fa7",
+  measurementId: "G-4YXW9NXRFM"
+};
+
+// Initialize
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+</script>
+<body>
+
+<div class="header">
+<h1>Cybersecurity Prevention Methods</h1>
+<p>Protect yourself and your data with these essential cybersecurity best practices</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+<div class="card-header"><span class="icon">🔐</span>Use Strong Passwords</div>
+<div class="card-body">
+<ul>
+<li>Use at least 12 characters</li>
+<li>Mix uppercase, lowercase, numbers</li>
+<li>Avoid personal information</li>
+<li>Use password manager</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">🔒</span>Enable Two-Factor Authentication</div>
+<div class="card-body">
+<ul>
+<li>Use OTP or authenticator apps</li>
+<li>Add extra security layer</li>
+<li>Enable on all important accounts</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">🔄</span>Keep Software Updated</div>
+<div class="card-body">
+<ul>
+<li>Update OS regularly</li>
+<li>Install security patches</li>
+<li>Enable auto updates</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">📧</span>Be Cautious with Emails</div>
+<div class="card-body">
+<ul>
+<li>Avoid unknown links</li>
+<li>Verify sender identity</li>
+<li>Don’t download suspicious files</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">🌐</span>Secure Your Network</div>
+<div class="card-body">
+<ul>
+<li>Use WPA encryption</li>
+<li>Change router passwords</li>
+<li>Avoid public WiFi</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">⬇</span>Download from Trusted Sources</div>
+<div class="card-body">
+<ul>
+<li>Use official stores</li>
+<li>Check reviews and ratings</li>
+<li>Verify authenticity</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">👁</span>Monitor Your Accounts</div>
+<div class="card-body">
+<ul>
+<li>Check transactions regularly</li>
+<li>Enable alerts</li>
+<li>Report suspicious activity</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="card-header"><span class="icon">🛡</span>Use Antivirus Software</div>
+<div class="card-body">
+<ul>
+<li>Install trusted antivirus</li>
+<li>Run regular scans</li>
+<li>Keep definitions updated</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

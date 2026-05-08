@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phishing Defense</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e40af);
+      color: white;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(56,189,248,0.5);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 20px rgba(56,189,248,0.6);
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: rgba(56,189,248,0.2);
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(90deg,#38bdf8,#22d3ee);
+      cursor: pointer;
+      font-weight: bold;
+      width: 150px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎣 Phishing Defense</h1>
+<p class="subtitle">Learn how to identify and avoid fake messages and scams</p>
+
+<div class="container">
+
+  <!-- WHAT -->
+  <div class="card">
+    <h2>📌 What is Phishing?</h2>
+    <p>
+      Phishing is a cyber attack where hackers trick you into giving personal
+      information like passwords, bank details, or OTPs using fake emails,
+      messages, or websites.
+    </p>
+  </div>
+
+  <!-- WHY -->
+  <div class="card">
+    <h2>⚠️ Why is it Dangerous?</h2>
+    <ul>
+      <li>Steals your passwords and accounts</li>
+      <li>Can access your bank details</li>
+      <li>Leads to identity theft</li>
+      <li>Spreads malware</li>
+    </ul>
+  </div>
+
+  <!-- TYPES -->
+  <div class="card">
+    <h2>🚨 Types of Phishing</h2>
+    <ul>
+      <li><b>Email Phishing:</b> Fake emails pretending to be companies</li>
+      <li><b>SMS Phishing (Smishing):</b> Fake messages with links</li>
+      <li><b>Website Phishing:</b> Fake login pages</li>
+      <li><b>Spear Phishing:</b> Targeted attacks on specific people</li>
+    </ul>
+  </div>
+
+  <!-- IDENTIFY -->
+  <div class="card">
+    <h2>🔍 How to Identify Phishing?</h2>
+    <ul>
+      <li>Suspicious email address</li>
+      <li>Spelling mistakes</li>
+      <li>Urgent messages like “Act now!”</li>
+      <li>Unknown links</li>
+    </ul>
+
+    <div class="highlight">
+      ⚠️ Example: "Your account will be blocked! Click here now!"
+    </div>
+  </div>
+
+  <!-- PREVENTION -->
+  <div class="card">
+    <h2>🛡 How to Stay Safe</h2>
+    <ul>
+      <li>Never click unknown links</li>
+      <li>Check website URL carefully</li>
+      <li>Do not share OTP/password</li>
+      <li>Enable 2FA</li>
+    </ul>
+  </div>
+
+  <!-- PRO TIP -->
+  <div class="card">
+    <h2>💡 Pro Tip</h2>
+    <div class="highlight">
+      Always hover over links before clicking to check the real URL.
+    </div>
+  </div>
+
+</div>
+
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+<script>
+function goBack() {
+  window.location.href = "awareness.html";
+}
+</script>
+
+</body>
+</html>

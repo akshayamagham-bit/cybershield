@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcards</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI';
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+color:white;
+text-align:center;
+}
+
+.header{
+font-size:32px;
+font-weight:bold;
+margin:20px;
+}
+
+/* CARD */
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:60vh;
+}
+
+.card{
+width:420px;
+height:240px;
+perspective:1000px;
+cursor:pointer;
+}
+
+.inner{
+width:100%;
+height:100%;
+transition:0.6s;
+transform-style:preserve-3d;
+position:relative;
+}
+
+.card.flip .inner{
+transform:rotateY(180deg);
+}
+
+.front,.back{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+backface-visibility:hidden;
+}
+
+.front{
+background:linear-gradient(135deg,#22d3ee,#3b82f6);
+}
+
+.back{
+background:linear-gradient(135deg,#1e293b,#0f172a);
+transform:rotateY(180deg);
+}
+
+/* BUTTONS */
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:10px;
+background:#22d3ee;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* PROGRESS */
+.progress{
+width:80%;
+margin:20px auto;
+background:#1e293b;
+border-radius:10px;
+}
+
+.bar{
+height:10px;
+width:0%;
+background:#22d3ee;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">FLASHCARDS</div>
+
+<h3 id="count">1 / 2</h3>
+
+<div class="container">
+<div class="card" id="card">
+<div class="inner">
+<div class="front" id="front"></div>
+<div class="back" id="back"></div>
+</div>
+</div>
+</div>
+
+<button onclick="prev()">⬅ Previous</button>
+<button onclick="next()">Next ➡</button>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<script>
+
+//ALL 43 FLASHCARDS
+
+const cards = [
+{front:"What is Identity Theft?",back:"Stealing personal information like Aadhaar, bank details, passwords, or OTPs to commit fraud."},
+{front:"How does Identity Theft happen?",back:"Fake emails, phishing links, public Wi-Fi, data leaks, or sharing personal details online."},
+{front:"Warning Signs",back:"Unknown transactions, OTPs you didn’t request, account changes, or fake purchases."},
+{front:"Prevention Tips",back:"Never share OTP/PIN, use strong passwords, enable 2FA, avoid suspicious links."},
+{front:"What to do if affected?",back:"Inform bank, change passwords, block cards, report on cybercrime.gov.in, call 1930."},
+
+{front:"What is Social Media Hacking?",back:"Unauthorized access to your social media account."},
+{front:"How does it happen?",back:"Weak passwords, phishing links, fake login pages, malware, public Wi-Fi."},
+{front:"Warning Signs",back:"Cannot log in, password changed, unknown posts, strange messages sent."},
+{front:"Prevention Tips",back:"Use strong passwords, enable 2FA, avoid suspicious links, update apps."},
+{front:"What to do if hacked?",back:"Reset password, use recovery, inform friends, report cybercrime."},
+
+{front:"What is an Online Job Scam?",back:"Fake job offers to cheat people and take money or personal info."},
+{front:"How does it happen?",back:"Fake job posts, WhatsApp offers, asking fees, asking bank/OTP details."},
+{front:"Warning Signs",back:"High salary, no interview, payment required, no official website."},
+{front:"Prevention Tips",back:"Never pay for jobs, verify company, don’t share personal info."},
+{front:"What to do if affected?",back:"Call 1930, report online, inform bank, save proof."},
+
+{front:"What are Online Scams?",back:"Frauds where criminals trick people into sending money or sharing data."},
+{front:"Where do scams happen?",back:"WhatsApp, social media, fake websites, and mobile apps."},
+{front:"Red Flags",back:"Upfront payment, unrealistic offers, poor reviews, too many permissions."},
+{front:"How to verify companies?",back:"Check official websites, reviews, MCA website, RBI NBFC list."},
+{front:"Safe app download?",back:"Only download from Play Store or App Store."},
+
+{front:"What is Fake Loan App Scam?",back:"Fraud apps that give fake loans and misuse your personal data."},
+{front:"What permissions do they ask?",back:"Contacts, photos, messages, personal data."},
+{front:"What happens next?",back:"They threaten or harass users and misuse data."},
+
+{front:"What is Cyberbullying?",back:"Harassing or insulting someone online."},
+{front:"How does it happen?",back:"Abusive messages, fake accounts, rumors, threats."},
+{front:"Warning Signs",back:"Fear, sadness, avoiding social media."},
+{front:"Prevention Tips",back:"Keep accounts private, block users, don’t share personal info."},
+{front:"What to do if affected?",back:"Don’t reply, take screenshots, block, report, tell a trusted adult."},
+
+{front:"What is Phishing?",back:"Fake messages used to steal personal information."},
+{front:"How does it happen?",back:"Fake links sent via SMS, email, or social media."},
+{front:"Warning Signs",back:"Unknown sender, urgent message, asking OTP/password."},
+{front:"Prevention Tips",back:"Do not click unknown links, never share OTP, verify websites."},
+{front:"What to do if affected?",back:"Inform bank, change passwords, report cybercrime."},
+
+{front:"What is UPI Fraud?",back:"Scammers trick people into sending money online."},
+{front:"How does it happen?",back:"Fake QR codes or payment requests."},
+{front:"Warning Signs",back:"Unknown request, QR scan to receive money, stranger asking payment."},
+{front:"Prevention Tips",back:"Never scan unknown QR, don’t approve unknown requests."},
+{front:"Important Rule",back:"UPI PIN is needed only to SEND money, not to receive."},
+{front:"What to do if affected?",back:"Call 1930, inform bank, report online."},
+
+{front:"Cybercrime Helpline",back:"Call 1930 immediately."},
+{front:"Where to report online?",back:"Report at cybercrime.gov.in"},
+{front:"Steps to report",back:"Visit website → Select crime → Upload proof → Submit complaint."},
+{front:"Law in India",back:"Cybercrimes are punishable under the IT Act, 2000."}
+];
+// ELEMENTS
+const front = document.getElementById("front");
+const back = document.getElementById("back");
+const card = document.getElementById("card");
+const count = document.getElementById("count");
+const bar = document.getElementById("bar");
+
+// VARIABLES
+let index = 0;
+
+// LOAD
+function loadCard(){
+front.innerText = cards[index].front;
+back.innerText = cards[index].back;
+
+count.innerText = (index+1)+" / "+cards.length;
+bar.style.width = ((index+1)/cards.length)*100+"%";
+
+card.classList.remove("flip");
+}
+
+// FLIP
+card.addEventListener("click", () => {
+card.classList.toggle("flip");
+});
+
+// NEXT
+function next(){
+if(index < cards.length-1){
+index++;
+loadCard();
+}
+}
+
+// PREV
+function prev(){
+if(index > 0){
+index--;
+loadCard();
+}
+}
+
+// INIT
+loadCard();
+
+</script>
+
+</body>
+</html>

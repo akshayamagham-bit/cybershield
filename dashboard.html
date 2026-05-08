@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cyber Shield Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #7c3aed);
+      color: white;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 2px solid #06b6d4;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .actions button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .report { background: #ef4444; }
+    .logout { background: #9333ea; }
+
+    .container {
+      padding: 30px;
+    }
+
+    /* WELCOME */
+    .welcome {
+      background: linear-gradient(90deg,#0ea5e9,#9333ea);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,255,255,0.3);
+    }
+
+    /* 🔥 MISSIONS (EQUAL GRID LIKE FIGMA) */
+    .missions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .mission {
+      background: rgba(0,0,0,0.3);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(0,255,255,0.3);
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s;
+
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mission:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(6,182,212,0.5);
+    }
+
+    .xp {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: gold;
+      color: black;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+    /* 🔥 QUICK ACCESS BUTTONS */
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .quick-btn {
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      cursor: pointer;
+
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,255,255,0.3);
+
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .quick-btn .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .quick-btn .title {
+      font-size: 16px;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: rgba(0,255,255,0.1);
+      box-shadow: 
+        0 0 10px #06b6d4,
+        0 0 25px rgba(6,182,212,0.6);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">🛡 CYBER SHIELD</div>
+
+  <div class="actions">
+    <button class="report" onclick="openPage('report.html')">⚠ Report</button>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- WELCOME -->
+  <div class="welcome">
+    <h2 id="welcomeText">Welcome</h2>
+    <p>Ready to protect the digital world?</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="card"><h3>Level</h3><p>1</p></div>
+    <div class="card"><h3>XP</h3><p>0 / 100</p></div>
+    <div class="card"><h3>Scans</h3><p>0</p></div>
+    <div class="card"><h3>Streak</h3><p>0 days</p></div>
+  </div>
+
+  <!-- MISSIONS -->
+  <h3>🎯 Missions</h3>
+  <div class="missions">
+
+    <div class="mission" onclick="openPage('scanner.html')">
+            <h3>🔍 Link Scanner</h3>
+      <p>Scan suspicious links for threats</p>
+    </div>
+
+    <div class="mission" onclick="openPage('analyzer.html')">
+            <h3>📱 App Analyzer</h3>
+      <p>Check app permissions & safety</p>
+    </div>
+
+    <div class="mission" onclick="openPage('awareness.html')">
+            <h3>📘 Awareness Hub</h3>
+      <p>Learn cyber security basics</p>
+    </div>
+
+    <div class="mission" onclick="openPage('report.html')">
+      <h3>⚠ Report Page</h3>
+      <p>Report cyber incidents</p>
+    </div>
+
+   <div class="mission" onclick="openPage('casestudies.html')">
+   <h3>📁 Case Studies</h3>
+  <p>Real world cyber attack stories</p>
+</div>
+
+<div class="mission" onclick="openPage('news.html')">
+    <h3>📰 Cyber News Feed</h3>
+  <p>Latest cybersecurity news & alerts</p>
+</div>
+  </div>
+
+  <!-- QUICK ACCESS -->
+  <h3>⚡ Quick Access</h3>
+  <div class="quick">
+
+    <div class="quick-btn" onclick="openPage('flashcards.html')">
+      <div class="icon">🎮</div>
+      <div class="title">Flashcards</div>
+    </div>
+
+    <div class="quick-btn" onclick="openPage('quiz.html')">
+      <div class="icon">🎯</div>
+      <div class="title">Quizzes</div>
+    </div>
+
+    <div class="quick-btn" onclick="openPage('threats.html')">
+      <div class="icon">⚠️</div>
+      <div class="title">Threats</div>
+    </div>
+
+    <div class="quick-btn" onclick="openPage('prevention.html')">
+      <div class="icon">🛡️</div>
+      <div class="title">Prevention</div>
+    </div>
+    
+    
+  </div>
+
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+ const firebaseConfig = {
+  apiKey: "AIzaSyB5X95YgL3uFwNb6S7vRbhUMrqpjPj9Udw",
+  authDomain: "cyber-web-app.firebaseapp.com",
+  projectId: "cyber-web-app",
+  storageBucket: "cyber-web-app.appspot.com",
+  messagingSenderId: "432294151782",
+  appId: "1:432294151782:web:edcf1a74701eea04ae4fa7",
+  measurementId: "G-4YXW9NXRFM"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// USER NAME
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    let name = user.displayName 
+      ? user.displayName 
+      : user.email.split("@")[0];
+
+    document.getElementById("welcomeText").innerText =
+      "Welcome, " + name;
+  } else {
+    window.location.href = "index.html";
+  }
+});
+
+// NAVIGATION
+function openPage(page) {
+  window.location.href = page;
+}
+
+// LOGOUT
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.href = "index.html";
+  });
+}
+</script>
+
+</body>
+</html>

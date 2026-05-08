@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Network Security</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI';
+      background: linear-gradient(135deg,#0f172a,#1e40af);
+      color: white;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      border: 1px solid #38bdf8;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      background: rgba(15,23,42,0.6);
+    }
+
+    .back {
+      padding: 10px;
+      background: #38bdf8;
+      color: black;
+      width: 120px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🌐 Network Security</h1>
+<p class="subtitle">Learn how to protect your internet and network from cyber attacks</p>
+
+<!-- WHAT IS -->
+<div class="box">
+  <h2>📌 What is Network Security?</h2>
+  <p>
+    Network security is the practice of protecting your internet connection,
+    devices, and data from unauthorized access, misuse, or attacks.
+  </p>
+</div>
+
+<!-- WHY IMPORTANT -->
+<div class="box">
+  <h2>⚠ Why is it Important?</h2>
+  <ul>
+    <li>Prevents hackers from accessing your data</li>
+    <li>Protects personal and financial information</li>
+    <li>Ensures safe internet usage</li>
+  </ul>
+</div>
+
+<!-- COMMON THREATS -->
+<div class="box">
+  <h2>❌ Common Network Threats</h2>
+  <ul>
+    <li>WiFi hacking</li>
+    <li>Man-in-the-Middle attacks</li>
+    <li>Data interception</li>
+    <li>Fake public networks</li>
+  </ul>
+</div>
+
+<!-- BEST PRACTICES -->
+<div class="box">
+  <h2>✅ Best Practices</h2>
+  <ul>
+    <li>Use strong WiFi passwords</li>
+    <li>Enable WPA2 or WPA3 security</li>
+    <li>Avoid using public WiFi for sensitive tasks</li>
+    <li>Turn off WiFi when not in use</li>
+  </ul>
+</div>
+
+<!-- PRO TIP -->
+<div class="box">
+  <h2>💡 Pro Tip</h2>
+  <p>
+    Always use a VPN when connecting to public networks to protect your data
+    from being intercepted.
+  </p>
+</div>
+
+<div class="back" onclick="goBack()">⬅ Back</div>
+
+<!-- 🔥 FIREBASE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB5X95YgL3uFwNb6S7vRbhUMrqpjPj9Udw",
+  authDomain: "cyber-web-app.firebaseapp.com",
+  projectId: "cyber-web-app",
+  storageBucket: "cyber-web-app.appspot.com",
+  messagingSenderId: "432294151782",
+  appId: "1:432294151782:web:edcf1a74701eea04ae4fa7",
+  measurementId: "G-4YXW9NXRFM"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ✅ SAVE WHEN PAGE OPENS */
+window.onload = async function () {
+  try {
+    await addDoc(collection(db, "learningProgress"), {
+      topic: "Network Security",
+      time: new Date()
+    });
+
+    console.log("Network Security saved ✅");
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+/* BACK */
+window.goBack = function() {
+  window.location.href = "awareness.html";
+};
+
+</script>
+
+</body>
+</html>

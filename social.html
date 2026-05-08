@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social Engineering</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg,#0f172a,#1e40af);
+      color: white;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: rgba(15,23,42,0.6);
+    }
+
+    .back-btn {
+      padding: 10px;
+      background: #38bdf8;
+      color: black;
+      border-radius: 10px;
+      width: 120px;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🧠 Social Engineering</h1>
+<p class="subtitle">
+Learn how attackers manipulate people to steal sensitive information
+</p>
+
+<!-- WHAT IS -->
+<div class="box">
+  <h2>📌 What is Social Engineering?</h2>
+  <p>
+    Social engineering is a psychological attack where cybercriminals trick users
+    into revealing confidential information such as passwords, OTPs, or banking details.
+    Instead of hacking systems, they exploit human behavior like trust, fear, or urgency.
+  </p>
+</div>
+
+<!-- WHY IMPORTANT -->
+<div class="box">
+  <h2>⚠ Why is it Important?</h2>
+  <ul>
+    <li>Protects personal and financial information</li>
+    <li>Prevents identity theft and fraud</li>
+    <li>Helps avoid scams and data leaks</li>
+    <li>Improves awareness against cyber attacks</li>
+  </ul>
+</div>
+
+<!-- TYPES -->
+<div class="box">
+  <h2>❌ Types of Social Engineering Attacks</h2>
+  <ul>
+    <li><b>Phishing:</b> Fake emails or websites to steal login details</li>
+    <li><b>Vishing:</b> Fraud calls pretending to be bank officials</li>
+    <li><b>Smishing:</b> Fake SMS with malicious links</li>
+    <li><b>Baiting:</b> Offering fake rewards to trick users</li>
+  </ul>
+</div>
+
+<!-- REAL LIFE EXAMPLES -->
+<div class="box">
+  <h2>📊 Real-Life Examples</h2>
+  <ul>
+    <li>"Your bank account is blocked, click here"</li>
+    <li>"You won a lottery! Claim now"</li>
+    <li>"Share OTP to verify your account"</li>
+  </ul>
+</div>
+
+<!-- WARNING SIGNS -->
+<div class="box">
+  <h2>🚨 Warning Signs</h2>
+  <ul>
+    <li>Urgent messages asking for immediate action</li>
+    <li>Unknown links or attachments</li>
+    <li>Requests for OTP or passwords</li>
+    <li>Spelling mistakes in emails/messages</li>
+  </ul>
+</div>
+
+<!-- BEST PRACTICES -->
+<div class="box">
+  <h2>✅ Best Practices</h2>
+  <ul>
+    <li>Never share OTP or passwords</li>
+    <li>Verify sender before trusting</li>
+    <li>Avoid clicking suspicious links</li>
+    <li>Enable two-factor authentication</li>
+  </ul>
+</div>
+
+<!-- PRO TIP -->
+<div class="box">
+  <h2>💡 Pro Tip</h2>
+  <p>
+    Always pause and verify before taking action. Attackers rely on urgency —
+    taking a moment to think can prevent major cyber attacks.
+  </p>
+</div>
+
+<!-- BACK -->
+<div class="back-btn" onclick="goBack()">⬅ Back</div>
+
+<!-- 🔥 FIREBASE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB5X95YgL3uFwNb6S7vRbhUMrqpjPj9Udw",
+  authDomain: "cyber-web-app.firebaseapp.com",
+  projectId: "cyber-web-app",
+  storageBucket: "cyber-web-app.appspot.com",
+  messagingSenderId: "432294151782",
+  appId: "1:432294151782:web:edcf1a74701eea04ae4fa7",
+  measurementId: "G-4YXW9NXRFM"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ✅ SAVE WHEN PAGE OPENS */
+window.onload = async function () {
+  try {
+    await addDoc(collection(db, "learningProgress"), {
+      topic: "Social Engineering",
+      time: new Date()
+    });
+
+    console.log("Social Engineering saved ✅");
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+/* BACK */
+window.goBack = function() {
+  window.location.href = "awareness.html";
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cyber News Feed</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #0f172a, #7c3aed);
+      color: white;
+      padding: 40px;
+    }
+    h1 { text-align: center; font-size: 38px; margin-bottom: 10px; }
+    .subtitle { text-align: center; color: #94a3b8; margin-bottom: 40px; font-size: 16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(0,255,255,0.3);
+      border-radius: 15px;
+      padding: 25px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 15px rgba(6,182,212,0.5);
+    }
+    .card-icon { font-size: 36px; margin-bottom: 14px; }
+    .card h3 { font-size: 18px; margin-bottom: 8px; }
+    .card p { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 14px; }
+    .tag {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      background: rgba(6,182,212,0.15);
+      border: 1px solid rgba(6,182,212,0.4);
+      color: #06b6d4;
+      margin-bottom: 14px;
+    }
+    .visit {
+      font-size: 12px;
+      color: #06b6d4;
+      font-weight: 600;
+    }
+    .back { margin-bottom: 25px; cursor: pointer; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="back" onclick="window.location.href='dashboard.html'">⬅ Back</div>
+<h1>📰 Cyber News Feed</h1>
+<p class="subtitle">Click any source — opens live feed that updates automatically</p>
+
+<div class="grid">
+
+  <a class="card" href="https://thehackernews.com" target="_blank">
+    <div class="card-icon"></div>
+    <span class="tag">Top Source</span>
+    <h3>The Hacker News</h3>
+    <p>Most read cybersecurity news site. Covers breaches, malware, vulnerabilities, and hacking stories updated multiple times daily.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+  <a class="card" href="https://www.bleepingcomputer.com/news/security/" target="_blank">
+    <div class="card-icon"> </div>
+    <span class="tag">Top Source</span>
+    <h3>BleepingComputer Security</h3>
+    <p>Breaking security news on ransomware, data breaches, and vulnerabilities. Updated every hour with detailed technical reports.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+  <a class="card" href="https://cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01" target="_blank">
+    <div class="card-icon">🇮🇳</div>
+    <span class="tag">India — Official</span>
+    <h3>CERT-In Advisories</h3>
+    <p>Official Indian government cybersecurity alerts and vulnerability notices. The most authoritative source for India-specific threats.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+  <a class="card" href="https://krebsonsecurity.com" target="_blank">
+    <div class="card-icon"></div>
+    <span class="tag">Investigative</span>
+    <h3>Krebs on Security</h3>
+    <p>In-depth investigative cybercrime journalism by Brian Krebs. Deep dives into criminal operations, fraud, and data breaches.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+  <a class="card" href="https://www.wired.com/category/security/" target="_blank">
+    <div class="card-icon"></div>
+    <span class="tag">Global</span>
+    <h3>Wired — Security</h3>
+    <p>Technology and cybersecurity stories from around the world. Covers nation-state attacks, privacy, surveillance and big tech.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+  <a class="card" href="https://indianexpress.com/section/technology/tech-news-technology/cyber-crime/" target="_blank">
+    <div class="card-icon"></div>
+    <span class="tag">India</span>
+    <h3>Indian Express — Cybercrime</h3>
+    <p>Cybercrime news specifically covering India — UPI frauds, scams, arrests and government cybersecurity policy updates.</p>
+    <div class="visit">Visit live feed →</div>
+  </a>
+
+</div>
+</body>
+</html>

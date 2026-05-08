@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App Analyzer</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg,#0f172a,#1e40af);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(15,23,42,0.7);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #38bdf8;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      background: #0f172a;
+      color: white;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg,#38bdf8,#22d3ee);
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .safe { background: #16a34a; }
+    .unsafe { background: #dc2626; }
+    .warning { background: #f59e0b; }
+  </style>
+</head>
+
+<body>
+
+<h1>📱 App Analyzer</h1>
+<p>Check if an app is safe or suspicious</p>
+
+<div class="box">
+
+  <input type="text" id="appName" placeholder="Enter app name">
+
+  <button onclick="analyzeApp()">Analyze App</button>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+
+function analyzeApp() {
+  let app = document.getElementById("appName").value
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  let resultBox = document.getElementById("result");
+
+  if (!app) {
+    resultBox.innerHTML = "⚠ Enter app name";
+    return;
+  }
+
+  // ✅ Popular trusted apps (top real apps)
+  let trustedApps = [
+    "whatsapp","instagram","facebook","youtube",
+    "snapchat","telegram","spotify","netflix",
+    "amazon","flipkart","gmail","googlemaps",
+    "googlepay","phonepe","paytm","uber","ola"
+  ];
+
+  // 🚨 Dangerous keywords
+  let dangerousWords = [
+    "hack","crack","mod","cheat","inject",
+    "spy","steal","tracker","keylogger"
+  ];
+
+  // ⚠ Suspicious keywords
+  let suspiciousWords = [
+    "pro","premium","vip","free","unlocked","plus"
+  ];
+
+  let isTrusted = trustedApps.includes(app);
+
+  let dangerScore = 0;
+  let warningScore = 0;
+
+  dangerousWords.forEach(word => {
+    if (app.includes(word)) dangerScore++;
+  });
+
+  suspiciousWords.forEach(word => {
+    if (app.includes(word)) warningScore++;
+  });
+
+  // 🎯 FINAL LOGIC
+
+  if (dangerScore > 0) {
+    resultBox.innerHTML = "❌ Unsafe App (Malicious keywords detected)";
+    resultBox.className = "result unsafe";
+  } 
+  else if (isTrusted && warningScore === 0) {
+    resultBox.innerHTML = "✅ Safe App (Trusted)";
+    resultBox.className = "result safe";
+  } 
+  else if (isTrusted && warningScore > 0) {
+    resultBox.innerHTML = "⚠ Modified Version (Be Careful)";
+    resultBox.className = "result warning";
+  } 
+  else {
+    resultBox.innerHTML = "⚠ Unknown App (Not Verified)";
+    resultBox.className = "result warning";
+  }
+}
+
+</script>
+
+</body>
+</html>

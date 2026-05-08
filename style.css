@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #0ea5e9);
+    color: white;
+}
+
+/* CENTER LOGIN */
+.center {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD */
+.card {
+    width: 320px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(15px);
+    text-align: center;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: #1e293b;
+    color: white;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.continue {
+    background: linear-gradient(90deg, #22d3ee, #0ea5e9);
+}
+
+.signup {
+    background: linear-gradient(90deg, #38bdf8, #0284c7);
+}
+
+.google {
+    background: #ef4444;
+}
+
+/* DASHBOARD */
+.dashboard {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.box {
+    background: rgba(15, 23, 42, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+}

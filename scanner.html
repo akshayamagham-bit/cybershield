@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Scanner</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg,#0f172a,#1e40af);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(15,23,42,0.7);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid #38bdf8;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      background: #0f172a;
+      color: white;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(90deg,#38bdf8,#22d3ee);
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .safe { background: #16a34a; }
+    .unsafe { background: #dc2626; }
+    .warning { background: #f59e0b; }
+  </style>
+</head>
+
+<body>
+
+<h1>🔍 Link Scanner</h1>
+<p>Only trusted websites are marked safe</p>
+
+<div class="box">
+
+  <input type="text" id="url" placeholder="Enter URL">
+
+  <button onclick="scanURL()">Scan Link</button>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+
+function scanURL() {
+  let url = document.getElementById("url").value.toLowerCase();
+  let resultBox = document.getElementById("result");
+
+  if (!url) {
+    resultBox.innerHTML = "⚠ Enter a URL";
+    return;
+  }
+
+  // ✅ Trusted domains (ONLY these are safe)
+  let trustedDomains = [
+    "google.com",
+    "youtube.com",
+    "amazon.com",
+    "facebook.com",
+    "instagram.com",
+    "twitter.com",
+    "microsoft.com",
+    "apple.com",
+    "netflix.com",
+    "github.com"
+  ];
+
+  // 🚨 Suspicious keywords
+  let suspiciousWords = [
+    "login", "verify", "bank", "secure", "update",
+    "free", "bonus", "win", "otp", "account"
+  ];
+
+  let isTrusted = false;
+
+  // ✅ Check trusted domains
+  trustedDomains.forEach(domain => {
+    if (url.includes(domain)) {
+      isTrusted = true;
+    }
+  });
+
+  let score = 0;
+
+  suspiciousWords.forEach(word => {
+    if (url.includes(word)) score++;
+  });
+
+  // 🚨 FINAL DECISION
+
+  if (isTrusted && score === 0) {
+    resultBox.innerHTML = "✅ Safe (Trusted Website)";
+    resultBox.className = "result safe";
+  } 
+  else if (isTrusted && score > 0) {
+    resultBox.innerHTML = "⚠ Trusted domain but looks suspicious";
+    resultBox.className = "result warning";
+  } 
+  else {
+    resultBox.innerHTML = "❌ Unsafe (Unverified Website)";
+    resultBox.className = "result unsafe";
+  }
+}
+
+</script>
+
+</body>
+</html>s

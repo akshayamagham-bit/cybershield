@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Shield Quiz</title>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI';
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+color:white;
+}
+
+/* HEADER */
+.header{padding:15px;}
+.back{color:white;text-decoration:none;font-weight:bold;}
+
+/* QUIZ BOX */
+.quiz-box{
+max-width:550px;
+margin:40px auto;
+background:white;
+color:black;
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+animation:fadeIn 0.5s ease;
+}
+
+/* TOP */
+.top{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* TIMER */
+.timer{text-align:right;font-size:14px;margin-bottom:10px;}
+
+/* PROGRESS */
+.progress{
+height:6px;
+background:#ddd;
+border-radius:10px;
+margin-bottom:20px;
+overflow:hidden;
+}
+.bar{height:100%;width:0%;background:#22c55e;}
+
+/* QUESTION */
+h2{font-size:22px;margin-bottom:20px;}
+
+/* OPTIONS */
+.option{
+padding:15px;
+border-radius:12px;
+margin:10px 0;
+border:2px solid #ddd;
+cursor:pointer;
+transition:0.3s;
+}
+.option:hover{transform:scale(1.02);}
+
+/* STATES */
+.correct{background:#d1fae5;border-color:#22c55e;}
+.wrong{background:#fee2e2;border-color:#ef4444;}
+.disabled{pointer-events:none;opacity:0.7;}
+
+/* BUTTON */
+.next-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#16a34a;
+color:white;
+font-weight:bold;
+margin-top:20px;
+cursor:pointer;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<a href="index.html" class="back">← Back to Home</a>
+</div>
+
+<div class="quiz-box">
+
+<div class="top">
+<span id="qno">Question 1</span>
+</div>
+
+<div class="timer">
+⏱ Time Left: <span id="timer">15</span>s
+</div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<h2 id="question"></h2>
+<div id="options"></div>
+
+<button class="next-btn" onclick="nextQuestion()">Next Question</button>
+
+</div>
+
+<script>
+
+// 🔥 FIREBASE CONFIG
+  const firebaseConfig = {
+  apiKey: "AIzaSyB5X95YgL3uFwNb6S7vRbhUMrqpjPj9Udw",
+  authDomain: "cyber-web-app.firebaseapp.com",
+  projectId: "cyber-web-app",
+  storageBucket: "cyber-web-app.appspot.com",
+  messagingSenderId: "432294151782",
+  appId: "1:432294151782:web:edcf1a74701eea04ae4fa7",
+  measurementId: "G-4YXW9NXRFM"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// 🔥 FULL QUESTIONS (36+)
+const quizData = [
+{q:"What is Identity Theft?",o:["Stealing personal info","Taking photo","Homework","Nickname"],a:0},
+{q:"Never share?",o:["Movie","School","OTP/PIN","Phone"],a:2},
+{q:"UPI PIN used for?",o:["Receive","Send money","Watch","Login"],a:1},
+{q:"Cybercrime helpline?",o:["100","1930","108","101"],a:1},
+{q:"Phishing?",o:["Game","Fake message","Music","Call"],a:1},
+{q:"Social hack?",o:["Post","Unauthorized access","Chat","Like"],a:1},
+{q:"Safe apps?",o:["Any","Play Store","Link","Telegram"],a:1},
+{q:"Online scam?",o:["Game","Fraud","Movie","Music"],a:1},
+{q:"Cyberbullying?",o:["Help","Harass","Teach","Play"],a:1},
+{q:"Fake loan app?",o:["Safe","Data theft","Help","Loan"],a:1},
+
+{q:"Warning sign identity theft?",o:["Free gift","Unknown transactions","Call","Wifi"],a:1},
+{q:"Prevent hacking?",o:["Share password","2FA","Click links","Ignore"],a:1},
+{q:"Job scam?",o:["Real","Fake job","Study","Office"],a:1},
+{q:"Job scam red flag?",o:["Interview","High salary no interview","HR call","Offer"],a:1},
+{q:"Verify company?",o:["Trust","Check reviews","Ignore","Guess"],a:1},
+{q:"Where scams happen?",o:["School","Online platforms","Office","Bank only"],a:1},
+{q:"Loan app permission?",o:["None","Contacts/photos","Game","Music"],a:1},
+{q:"After giving data?",o:["Nothing","Threats","Bonus","Reward"],a:1},
+{q:"Cyberbullying sign?",o:["Happy","Fear","Excited","Fun"],a:1},
+{q:"If bullied?",o:["Reply","Block/report","Fight","Ignore"],a:1},
+
+{q:"Phishing sign?",o:["Safe","Urgent OTP","Verified","Known"],a:1},
+{q:"Prevent phishing?",o:["Click","Verify link","Share OTP","Ignore"],a:1},
+{q:"UPI fraud?",o:["Safe","Trick payment","Bank","Recharge"],a:1},
+{q:"UPI warning?",o:["Known","Unknown request","Safe","Verified"],a:1},
+{q:"Prevent UPI fraud?",o:["Scan all","Avoid unknown QR","Share PIN","Trust"],a:1},
+{q:"Important rule?",o:["PIN receive","PIN send","No PIN","Share PIN"],a:1},
+{q:"If UPI fraud?",o:["Ignore","Call 1930","Sleep","Delete"],a:1},
+{q:"Report online?",o:["Google","cybercrime.gov.in","YouTube","Instagram"],a:1},
+{q:"Cyber law?",o:["None","IT Act 2000","Traffic","School"],a:1},
+{q:"OTP means?",o:["Password","One Time Password","Login","ID"],a:1},
+
+{q:"Public WiFi risk?",o:["Safe","Data theft","Fast","Free"],a:1},
+{q:"Strong password?",o:["1234","Mix letters","Name","Phone"],a:1},
+{q:"2FA means?",o:["Two Factor Auth","Double app","Two login","None"],a:0},
+{q:"Malware?",o:["Game","Virus","Song","App"],a:1},
+{q:"Safe browsing?",o:["Any link","Verify URL","Click all","Ignore"],a:1},
+{q:"Data privacy?",o:["Share","Protect data","Post","Send"],a:1}
+];
+
+// VARIABLES
+let index=0,answered=false;
+let time=15,timerInterval;
+
+// LOAD
+function loadQuestion(){
+let q=quizData[index];
+
+qno.innerText=`Question ${index+1} of ${quizData.length}`;
+question.innerText=q.q;
+bar.style.width = ((index+1)/quizData.length)*100 + "%";
+bar.innerText = "";
+
+let html="";
+q.o.forEach((opt,i)=>{
+html+=`<div class="option" onclick="selectOption(${i})">${opt}</div>`;
+});
+options.innerHTML=html;
+
+answered=false;
+startTimer();
+}
+
+// TIMER
+function startTimer(){
+clearInterval(timerInterval);
+time=15;
+timer.innerText=time;
+
+timerInterval=setInterval(()=>{
+time--;
+timer.innerText=time;
+
+if(time===0){
+clearInterval(timerInterval);
+nextQuestion();
+}
+},1000);
+}
+
+// SELECT
+function selectOption(i){
+if(answered) return;
+answered=true;
+clearInterval(timerInterval);
+
+let opts=document.querySelectorAll(".option");
+let correct=quizData[index].a;
+
+opts.forEach((opt,idx)=>{
+opt.classList.add("disabled");
+if(idx===correct) opt.classList.add("correct");
+if(idx===i && i!==correct) opt.classList.add("wrong");
+});
+
+}
+
+// NEXT
+function nextQuestion(){
+  if(index < quizData.length-1){
+    index++;
+    loadQuestion();
+  }else{
+     saveProgress();
+
+    document.querySelector(".quiz-box").innerHTML=`
+    <h2 style="text-align:center;">Quiz Completed 🎉</h2>
+
+    <h4 style="text-align:center;">Keep learning 🔐</h4>
+    `;
+  }
+}
+
+// SAVE
+function saveScore(){
+db.collection("quizScores").doc("user1").set({
+total:quizData.length,
+date:new Date().toString()
+});
+}
+function saveProgress(){
+  console.log("🔥 Saving to Firebase...");
+
+  db.collection("progress")
+    .doc("user1")
+    .set({
+      completed: true,
+      totalQuestions: quizData.length,
+      lastQuestion: index,
+      date: new Date().toString()
+    })
+    .then(()=>{
+      console.log("✅ Saved successfully");
+    })
+    .catch(err=>{
+      console.error("❌ Error:", err);
+    });
+}
+
+// INIT
+loadQuestion();
+
+</script>
+
+</body>
+</html>
