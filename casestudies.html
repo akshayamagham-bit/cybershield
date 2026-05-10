@@ -3,131 +3,88 @@
 <head>
   <title>Case Studies</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #0f172a, #7c3aed);
-      color: white;
-      padding: 40px;
-    }
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: linear-gradient(135deg, #0f172a, #7c3aed); color: white; padding: 40px; }
     h1 { text-align: center; font-size: 38px; margin-bottom: 10px; }
     .subtitle { text-align: center; color: #94a3b8; margin-bottom: 40px; font-size: 16px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .card {
-      background: rgba(0,0,0,0.3);
-      border: 1px solid rgba(0,255,255,0.3);
-      border-radius: 15px;
-      padding: 25px;
-      transition: 0.3s;
-      text-decoration: none;
-      color: white;
-      display: block;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(6,182,212,0.5);
-    }
-    .year {
-      display: inline-block;
-      background: gold;
-      color: black;
-      padding: 3px 12px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+    .section-title { font-size: 22px; font-weight: bold; margin: 40px 0 15px; border-left: 4px solid #06b6d4; padding-left: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .card { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,255,0.3); border-radius: 15px; padding: 25px; transition: 0.3s; text-decoration: none; color: white; display: block; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 0 15px rgba(6,182,212,0.5); }
+    .year { display: inline-block; background: gold; color: black; padding: 3px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; margin-bottom: 12px; }
     .card h3 { font-size: 18px; margin-bottom: 10px; }
     .card p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
-    .lesson {
-      margin-top: 12px;
-      padding: 10px 14px;
-      background: rgba(6,182,212,0.1);
-      border-left: 3px solid #06b6d4;
-      border-radius: 6px;
-      font-size: 13px;
-      color: #67e8f9;
-    }
+    .lesson { margin-top: 12px; padding: 10px 14px; background: rgba(6,182,212,0.1); border-left: 3px solid #06b6d4; border-radius: 6px; font-size: 13px; color: #67e8f9; }
     .read-more { margin-top: 12px; font-size: 12px; color: #06b6d4; font-weight: 600; }
+    .live-dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; margin-right: 6px; animation: blink 1s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .status { font-size: 12px; color: #22c55e; margin-bottom: 15px; }
+    .news-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,255,0.3); border-radius: 12px; padding: 18px 22px; transition: 0.3s; text-decoration: none; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .news-card:hover { transform: translateY(-2px); box-shadow: 0 0 15px rgba(6,182,212,0.5); }
+    .news-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .news-meta { font-size: 11px; color: #94a3b8; }
+    .new-badge { background: #22c55e; color: black; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 6px; margin-left: 8px; animation: blink 1s infinite; }
+    .source-tag { white-space: nowrap; margin-left: 20px; padding: 3px 12px; border-radius: 8px; font-size: 11px; background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.4); color: #06b6d4; }
+    .loading { text-align: center; color: #94a3b8; padding: 20px; }
     .back { margin-bottom: 25px; cursor: pointer; font-weight: bold; }
   </style>
 </head>
 <body>
 
 <div class="back" onclick="window.location.href='dashboard.html'">⬅ Back</div>
-<h1>📁 Real Case Studies</h1>
-<p class="subtitle">Click any card to read the full documented incident</p>
+<h1>📁 Case Studies</h1>
+<p class="subtitle">Real documented cyberattacks + live incident updates</p>
 
+<!-- STATIC VERIFIED CASES -->
+<div class="section-title"> </div>
 <div class="grid">
-   
+
   <a class="card" href="https://csipr.nliu.ac.in/news-updates/the-aiims-cyber-attack-and-indias-dilapidated-cyber-security-infrastructure/" target="_blank">
-  <span class="year">2023</span>
-  <h3>AIIMS Delhi Ransomware Attack</h3>
-  <p>Hackers encrypted 40 million patient records. Hospital services down for 2 weeks. Started with a phishing email opened by a staff member.</p>
-  <div class="lesson">Lesson: Never open unexpected email attachments, even at work.</div>
-  <div class="read-more">Read full story → The Hindu</div>
-</a>
-
-<a class="card" href="https://www.bleepingcomputer.com/news/security/cowin-health-ministry-denies-data-breach-after-data-of-millions-leaks-online/" target="_blank">
-  <span class="year">2023</span>
-  <h3>CoWIN Data Breach — 815 Million Indians</h3>
-  <p>Aadhaar numbers and phone numbers of 815 million citizens leaked on Telegram. One of the largest breaches in Indian history.</p>
-  <div class="lesson">Lesson: Portals handling citizen data must use strict access controls.</div>
-  <div class="read-more">Read full story → BleepingComputer</div>
-</a>
-
-  <a class="card" href="https://www.cm-alliance.com/cybersecurity-blog/aiims-ransomware-attack" target="_blank">
-    <span class="year">2022</span>
+    <span class="year">2023</span>
     <h3>AIIMS Delhi Ransomware Attack</h3>
-    <p>LockBit ransomware gang encrypted 40 million patient records at India's top hospital. Rs 200 crore demanded in crypto. Services ran manually for 2 weeks.</p>
+    <p>Hackers encrypted 40 million patient records. Hospital services down for 2 weeks. Started with a phishing email opened by staff.</p>
     <div class="lesson">Lesson: Never open unexpected email attachments, even at work.</div>
-    <div class="read-more">Read full story → CM Alliance</div>
+    <div class="read-more">Read full story →</div>
+  </a>
+
+  <a class="card" href="https://www.bleepingcomputer.com/news/security/cowin-health-ministry-denies-data-breach-after-data-of-millions-leaks-online/" target="_blank">
+    <span class="year">2023</span>
+    <h3>CoWIN Data Breach — 815 Million Indians</h3>
+    <p>Aadhaar numbers and phone numbers of 815 million citizens leaked on Telegram. One of the largest breaches in Indian history.</p>
+    <div class="lesson">Lesson: Portals handling citizen data must use strict access controls.</div>
+    <div class="read-more">Read full story →</div>
   </a>
 
   <a class="card" href="https://humanfirewall.io/the-uber-breach-case-study-cybersecurity-lessons-learned/" target="_blank">
     <span class="year">2022</span>
     <h3>Uber Internal Systems Hack</h3>
-    <p>Lapsus$ hacker used MFA fatigue + WhatsApp social engineering on a contractor to get VPN credentials. Full internal access gained in hours including Slack and G-Suite.</p>
-    <div class="lesson">Lesson: Always verify identity before approving any MFA request.</div>
-    <div class="read-more">Read full story → HumanFirewall</div>
+    <p>An 18-year-old social engineered an employee via WhatsApp to hand over VPN credentials. Full network access gained in hours.</p>
+    <div class="lesson">Lesson: Always verify identity before sharing any credentials.</div>
+    <div class="read-more">Read full story →</div>
   </a>
 
   <a class="card" href="https://www.bleepingcomputer.com/news/security/largest-us-pipeline-shuts-down-operations-after-ransomware-attack/" target="_blank">
     <span class="year">2021</span>
     <h3>Colonial Pipeline Ransomware</h3>
-    <p>DarkSide gang used one leaked VPN password to shut down 5,500 miles of US fuel pipeline. $4.4 million ransom paid. Fuel shortages across East Coast for 6 days.</p>
+    <p>One leaked password shut down a US fuel pipeline. $4.4 million ransom paid. Fuel shortages across the East Coast for 6 days.</p>
     <div class="lesson">Lesson: One reused password can shut down critical infrastructure.</div>
-    <div class="read-more">Read full story → BleepingComputer</div>
+    <div class="read-more">Read full story →</div>
   </a>
 
-  <a class="card" href="https://www.bleepingcomputer.com/news/security/colonial-pipeline-reports-data-breach-after-may-ransomware-attack/" target="_blank">
-    <span class="year">2021</span>
-    <h3>Colonial Pipeline — Data Breach Details</h3>
-    <p>Post-attack investigation revealed DarkSide also stole 100GB of data in 2 hours and exposed personal info of 5,810 employees including Social Security numbers.</p>
-    <div class="lesson">Lesson: Attackers steal data before encrypting — backups alone are not enough.</div>
-    <div class="read-more">Read full story → BleepingComputer</div>
+  <a class="card" href="https://www.bleepingcomputer.com/news/security/500-000-zoom-accounts-sold-on-hacker-forums-the-dark-web/" target="_blank">
+    <span class="year">2020</span>
+    <h3>Zoom 500,000 Account Credential Stuffing</h3>
+    <p>500,000 Zoom accounts sold on the dark web using passwords leaked from other breaches — proving password reuse is deadly.</p>
+    <div class="lesson">Lesson: Never reuse passwords. Enable 2FA on every account.</div>
+    <div class="read-more">Read full story →</div>
   </a>
 
   <a class="card" href="https://www.upguard.com/blog/what-caused-the-uber-data-breach" target="_blank">
     <span class="year">2022</span>
     <h3>MFA Fatigue Attack — Uber Deep Dive</h3>
-    <p>Attacker bombarded employee with MFA notifications for an hour until they approved. Shows how even 2FA can be defeated through human psychology and exhaustion.</p>
-    <div class="lesson">Lesson: Report repeated MFA requests immediately — never approve ones you didn't request.</div>
-    <div class="read-more">Read full story → UpGuard</div>
-  </a>
-
-  <a class="card" href="https://elitetechdefender01.beehiiv.com/p/ransomware-case-study" target="_blank">
-    <span class="year">2021</span>
-    <h3>Colonial Pipeline — Full Case Study</h3>
-    <p>Complete breakdown of the attack timeline: initial breach on May 6, encryption May 7, ransom paid May 8, operations restored May 12. $2.3M recovered by FBI in June.</p>
-    <div class="lesson">Lesson: Inactive VPN accounts must be disabled — unused access is a open door.</div>
-    <div class="read-more">Read full case study →</div>
+    <p>Attacker bombarded employee with MFA notifications until they approved. Shows how even 2FA can be defeated psychologically.</p>
+    <div class="lesson">Lesson: Never approve MFA requests you didn't initiate.</div>
+    <div class="read-more">Read full story →</div>
   </a>
 
 </div>
-</body>
-</html>
+
