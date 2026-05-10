@@ -11,103 +11,161 @@
       padding: 40px;
     }
     h1 { text-align: center; font-size: 38px; margin-bottom: 10px; }
-    .subtitle { text-align: center; color: #94a3b8; margin-bottom: 40px; font-size: 16px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    .subtitle { text-align: center; color: #94a3b8; margin-bottom: 10px; font-size: 16px; }
+    .live-dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: blink 1s infinite;
     }
-    .card {
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .status {
+      text-align: center;
+      font-size: 13px;
+      color: #22c55e;
+      margin-bottom: 30px;
+    }
+    .news-list { display: flex; flex-direction: column; gap: 14px; }
+    .news-item {
       background: rgba(0,0,0,0.3);
       border: 1px solid rgba(0,255,255,0.3);
-      border-radius: 15px;
-      padding: 25px;
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+      cursor: pointer;
       text-decoration: none;
       color: white;
-      display: block;
-      transition: 0.3s;
     }
-    .card:hover {
-      transform: translateY(-3px);
+    .news-item:hover {
+      transform: translateY(-2px);
       box-shadow: 0 0 15px rgba(6,182,212,0.5);
     }
-    .card-icon { font-size: 36px; margin-bottom: 14px; }
-    .card h3 { font-size: 18px; margin-bottom: 8px; }
-    .card p { font-size: 13px; color: #94a3b8; line-height: 1.6; margin-bottom: 14px; }
+    .news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .news-meta { font-size: 12px; color: #94a3b8; }
     .tag {
-      display: inline-block;
-      padding: 3px 12px;
-      border-radius: 8px;
-      font-size: 11px;
+      white-space: nowrap;
+      margin-left: 20px;
+      padding: 4px 14px;
+      border-radius: 10px;
+      font-size: 12px;
       background: rgba(6,182,212,0.15);
       border: 1px solid rgba(6,182,212,0.4);
       color: #06b6d4;
-      margin-bottom: 14px;
     }
-    .visit {
-      font-size: 12px;
-      color: #06b6d4;
-      font-weight: 600;
+    .loading {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 15px;
+      padding: 40px;
     }
     .back { margin-bottom: 25px; cursor: pointer; font-weight: bold; }
+    .new-badge {
+      background: #22c55e;
+      color: black;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 10px;
+      animation: blink 1s infinite;
+    }
   </style>
 </head>
 <body>
 
 <div class="back" onclick="window.location.href='dashboard.html'">⬅ Back</div>
 <h1>📰 Cyber News Feed</h1>
-<p class="subtitle">Click any source — opens live feed that updates automatically</p>
+<p class="subtitle"><span class="live-dot"></span> Live — updates every 60 seconds</p>
+<p class="status" id="status">Fetching latest news...</p>
 
-<div class="grid">
-
-  <a class="card" href="https://thehackernews.com" target="_blank">
-    <div class="card-icon"></div>
-    <span class="tag">Top Source</span>
-    <h3>The Hacker News</h3>
-    <p>Most read cybersecurity news site. Covers breaches, malware, vulnerabilities, and hacking stories updated multiple times daily.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
-  <a class="card" href="https://www.bleepingcomputer.com/news/security/" target="_blank">
-    <div class="card-icon"> </div>
-    <span class="tag">Top Source</span>
-    <h3>BleepingComputer Security</h3>
-    <p>Breaking security news on ransomware, data breaches, and vulnerabilities. Updated every hour with detailed technical reports.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
-  <a class="card" href="https://cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01" target="_blank">
-    <div class="card-icon">🇮🇳</div>
-    <span class="tag">India — Official</span>
-    <h3>CERT-In Advisories</h3>
-    <p>Official Indian government cybersecurity alerts and vulnerability notices. The most authoritative source for India-specific threats.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
-  <a class="card" href="https://krebsonsecurity.com" target="_blank">
-    <div class="card-icon"></div>
-    <span class="tag">Investigative</span>
-    <h3>Krebs on Security</h3>
-    <p>In-depth investigative cybercrime journalism by Brian Krebs. Deep dives into criminal operations, fraud, and data breaches.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
-  <a class="card" href="https://www.wired.com/category/security/" target="_blank">
-    <div class="card-icon"></div>
-    <span class="tag">Global</span>
-    <h3>Wired — Security</h3>
-    <p>Technology and cybersecurity stories from around the world. Covers nation-state attacks, privacy, surveillance and big tech.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
-  <a class="card" href="https://indianexpress.com/section/technology/tech-news-technology/cyber-crime/" target="_blank">
-    <div class="card-icon"></div>
-    <span class="tag">India</span>
-    <h3>Indian Express — Cybercrime</h3>
-    <p>Cybercrime news specifically covering India — UPI frauds, scams, arrests and government cybersecurity policy updates.</p>
-    <div class="visit">Visit live feed →</div>
-  </a>
-
+<div class="news-list" id="news-list">
+  <div class="loading">Loading live cybersecurity news...</div>
 </div>
+
+<script>
+  // 🔑 PASTE YOUR newsdata.io API KEY HERE
+  const API_KEY = 'pub_edbe2e69c84f403e91b70b59b5eec75c';
+
+  let lastFetchedIds = [];
+
+  function timeAgo(dateStr) {
+    const now = new Date();
+    const then = new Date(dateStr);
+    const diff = Math.floor((now - then) / 1000);
+    if (diff < 60) return `${diff} seconds ago`;
+    if (diff < 3600) return `${Math.floor(diff/60)} minutes ago`;
+    if (diff < 86400) return `${Math.floor(diff/3600)} hours ago`;
+    return `${Math.floor(diff/86400)} days ago`;
+  }
+
+  function getTag(source) {
+    if (!source) return 'Global';
+    const s = source.toLowerCase();
+    if (s.includes('india') || s.includes('hindu') || s.includes('ndtv') || s.includes('times of india')) return 'India';
+    if (s.includes('bleeping') || s.includes('hacker') || s.includes('krebs')) return 'Security';
+    if (s.includes('wired') || s.includes('techcrunch')) return 'Tech';
+    return 'Global';
+  }
+
+  async function fetchNews() {
+    try {
+      const res = await fetch(
+        `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=cybercrime+OR+cyberattack+OR+hacking+OR+ransomware+OR+phishing&language=en&category=technology`
+      );
+      const data = await res.json();
+
+      if (!data.results || data.results.length === 0) {
+        document.getElementById('status').textContent = 'No new articles found.';
+        return;
+      }
+
+      const newArticles = data.results.filter(a => !lastFetchedIds.includes(a.article_id));
+      if (newArticles.length === 0) {
+        document.getElementById('status').textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
+        return;
+      }
+
+      lastFetchedIds = data.results.map(a => a.article_id);
+
+      const container = document.getElementById('news-list');
+      container.innerHTML = '';
+
+      data.results.forEach((article, i) => {
+        const isNew = i < newArticles.length;
+        const item = document.createElement('a');
+        item.className = 'news-item';
+        item.href = article.link;
+        item.target = '_blank';
+        item.innerHTML = `
+          <div>
+            <div class="news-title">
+              ${article.title}
+              ${isNew ? '<span class="new-badge">NEW</span>' : ''}
+            </div>
+            <div class="news-meta">${article.source_id || 'Unknown'} &nbsp;|&nbsp; ${timeAgo(article.pubDate)}</div>
+          </div>
+          <span class="tag">${getTag(article.source_id)}</span>
+        `;
+        container.appendChild(item);
+      });
+
+      document.getElementById('status').textContent = `✅ Updated at ${new Date().toLocaleTimeString()} — ${data.results.length} articles loaded`;
+
+    } catch (err) {
+      document.getElementById('status').textContent = '❌ Failed to fetch news. Check your API key.';
+      console.error(err);
+    }
+  }
+
+  // Fetch immediately, then every 60 seconds
+  fetchNews();
+  setInterval(fetchNews, 60000);
+</script>
+
 </body>
 </html>
